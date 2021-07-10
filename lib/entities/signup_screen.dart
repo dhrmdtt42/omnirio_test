@@ -2,6 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:omnirio_app/entities/login_screen.dart';
 import 'package:omnirio_app/utils/my_utils.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -16,10 +17,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController mobileTextController = new TextEditingController();
   bool referalCheck = false;
   bool terms_check = false;
-  String name;
-  String email;
-  String pass;
-  String mobile;
+  String name = "";
+  String email = "";
+  String pass = "";
+  String mobile = "";
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         fillColor: const Color(0xfff6f7f9),
                         errorText: name.isEmpty == true
                             ? "Name should not be empty"
-                            : null,
+                            : "",
                         border: OutlineInputBorder(
                           borderSide:
                               BorderSide(width: 0.0, style: BorderStyle.none),
@@ -243,12 +244,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       maxLength: 10,
                       textInputAction: TextInputAction.next,
                       onChanged: (value) {
-                        // setState(() {
-                        //   if (value != " ")
-                        //     // isNum = isNumeric(value);
-                        //   else
-                        //     value = "";
-                        // });
+                        setState(() {
+                          mobile = value;
+                        });
                       },
 //                      onFieldSubmitted: (value) {
 //
@@ -259,7 +257,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         fillColor: const Color(0xfff6f7f9),
                         errorText: mobile.isEmpty == true
                             ? "please enter the mobile number"
-                            : null,
+                            : "",
                         border: OutlineInputBorder(
                           borderSide:
                               BorderSide(width: 0.0, style: BorderStyle.none),
@@ -320,7 +318,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               }),
                           Expanded(
                             child: Text(
-                              "Do you have any referal?",
+                              "Do you have any referal code?",
                               style: GoogleFonts.poppins(
                                   color: Colors.grey,
                                   fontSize: 12.0,
@@ -381,13 +379,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             ),
                             color: Colors.lightBlue,
-                            // new CommonData().colorFromHex("#e95d5d"),
                             elevation: 5,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
                                 side: BorderSide(
                                   color: Colors.lightBlue,
-                                  // new CommonData().colorFromHex("#e95d5d"),
                                 )),
                           ),
                         ),
@@ -395,15 +391,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(width: 2.0),
                         InkWell(
                           onTap: () {
-//                              ForgotPasswordPage
-//                               Navigator.push(
-//                                   context,
-//                                   MaterialPageRoute(
-//                                       builder: (BuildContext context) =>
-//                                           ForgotPasswordPage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        LoginScreen()));
                           },
                           child: Text(
-                            "SignUp",
+                            "Login",
                             style: GoogleFonts.poppins(
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.bold,
